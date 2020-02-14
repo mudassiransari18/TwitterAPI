@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 const TweetRoute = require('./routes/tweets');
 
-mongoose.connect('mongodb://localhost/Twitter',{useNewUrlParser: true, useUnifiedTopology: true})
+const CONNECTION_URI = process.env.MONGODB_URI || 'mongodb://localhost/Twitter';
+
+mongoose.connect(CONNECTION_URI,{useNewUrlParser: true, useUnifiedTopology: true})
 let db = mongoose.connection;
 
 db.once('open',function(){
